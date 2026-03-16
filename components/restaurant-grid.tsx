@@ -8,9 +8,13 @@ import { Badge } from "@/components/ui/badge";
 
 interface RestaurantGridProps {
   onSelectRestaurant?: (id: string) => void;
+  onSelectTime?: (restaurantId: string, time: string) => void;
 }
 
-export function RestaurantGrid({ onSelectRestaurant }: RestaurantGridProps) {
+export function RestaurantGrid({
+  onSelectRestaurant,
+  onSelectTime,
+}: RestaurantGridProps) {
   return (
     <section className="bg-background py-16 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -126,22 +130,26 @@ export function RestaurantGrid({ onSelectRestaurant }: RestaurantGridProps) {
                 </div>
 
                 {/* Available times */}
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {restaurant.availableTimes.slice(0, 3).map((time) => (
-                    <button
-                      key={time}
-                      className="flex items-center gap-1 rounded-lg bg-secondary px-3 py-1.5 text-xs font-medium text-secondary-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
-                    >
-                      <Clock className="h-3 w-3" />
-                      {time}
-                    </button>
-                  ))}
-                  {restaurant.availableTimes.length > 3 && (
-                    <span className="flex items-center px-2 text-xs text-muted-foreground">
-                      +{restaurant.availableTimes.length - 3} more
-                    </span>
-                  )}
-                </div>
+<div className="mt-4 flex flex-wrap gap-2">
+  {restaurant.availableTimes.slice(0, 3).map((time) => (
+    <button
+      key={time}
+      onClick={(e) => {
+        e.stopPropagation();
+        onSelectTime?.(restaurant.id, time);
+      }}
+      className="flex items-center gap-1 rounded-lg bg-secondary px-3 py-1.5 text-xs font-medium text-secondary-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
+    >
+      <Clock className="h-3 w-3" />
+      {time}
+    </button>
+  ))}
+  {restaurant.availableTimes.length > 3 && (
+    <span className="flex items-center px-2 text-xs text-muted-foreground">
+      +{restaurant.availableTimes.length - 3} more
+    </span>
+  )}
+</div>
               </div>
             </article>
           ))}
