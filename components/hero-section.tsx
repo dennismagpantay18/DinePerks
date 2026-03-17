@@ -12,7 +12,7 @@ export function HeroSection() {
 
   return (
     <section className="w-full bg-background">
-      {/* Compact Hero Banner */}
+      {/* HERO */}
       <div className="relative h-64 w-full overflow-hidden sm:h-72 md:h-80">
         <Image
           src="/images/hero-banner.jpg"
@@ -21,51 +21,54 @@ export function HeroSection() {
           className="object-cover object-center"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
 
-        {/* Overlay Content */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center px-4">
-          <h1 className="font-serif text-3xl font-medium leading-tight tracking-tight text-card sm:text-4xl md:text-5xl">
-            <span className="drop-shadow-lg">
-              Discover dining perks at
-              <br />
-              great local restaurants
-            </span>
+        {/* DARK overlay */}
+        <div className="absolute inset-0 bg-black/70" />
+
+        {/* WARM tint */}
+        <div className="absolute inset-0 bg-[#3b2a1f]/40" />
+
+        {/* TEXT */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center">
+          <h1 className="font-serif text-3xl font-medium leading-tight tracking-tight text-white sm:text-4xl md:text-5xl">
+            Discover dining perks at
+            <br />
+            great local restaurants
           </h1>
-          <p className="mt-2 max-w-2xl text-center text-sm text-card/90 drop-shadow-md sm:text-base md:text-lg">
+
+          <p className="mt-2 max-w-2xl text-white/80 sm:text-base md:text-lg">
             Exclusive offers at the best spots in town
           </p>
         </div>
       </div>
 
-      {/* Search Section - Below Hero */}
+      {/* SEARCH */}
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <div className="-mt-10 relative z-10">
-          {/* Search Box */}
           <div className="rounded-2xl border border-border bg-card p-4 shadow-xl">
             <div className="flex flex-col gap-3 md:flex-row md:items-center md:gap-4">
+
               {/* Location */}
-              <div className="group flex flex-1 items-center gap-3 rounded-xl bg-muted/50 px-4 py-3 transition-colors hover:bg-muted">
+              <div className="flex flex-1 items-center gap-3 rounded-xl bg-muted/50 px-4 py-3">
                 <MapPin className="h-5 w-5 text-accent" />
                 <div className="flex flex-col items-start">
-                  <span className="text-xs font-medium text-muted-foreground">
+                  <span className="text-xs text-muted-foreground">
                     Location
                   </span>
                   <input
                     type="text"
                     value={location}
                     onChange={(e) => setLocation(e.target.value)}
-                    className="w-full bg-transparent text-sm font-medium text-foreground outline-none placeholder:text-muted-foreground"
-                    placeholder="Enter city"
+                    className="w-full bg-transparent text-sm font-medium text-foreground outline-none"
                   />
                 </div>
               </div>
 
               {/* Date */}
-              <div className="group flex flex-1 items-center gap-3 rounded-xl bg-muted/50 px-4 py-3 transition-colors hover:bg-muted">
+              <div className="flex flex-1 items-center gap-3 rounded-xl bg-muted/50 px-4 py-3">
                 <Calendar className="h-5 w-5 text-accent" />
                 <div className="flex flex-col items-start">
-                  <span className="text-xs font-medium text-muted-foreground">
+                  <span className="text-xs text-muted-foreground">
                     Date
                   </span>
                   <select
@@ -76,16 +79,15 @@ export function HeroSection() {
                     <option>Tonight</option>
                     <option>Tomorrow</option>
                     <option>This Weekend</option>
-                    <option>Next Week</option>
                   </select>
                 </div>
               </div>
 
               {/* Guests */}
-              <div className="group flex flex-1 items-center gap-3 rounded-xl bg-muted/50 px-4 py-3 transition-colors hover:bg-muted">
+              <div className="flex flex-1 items-center gap-3 rounded-xl bg-muted/50 px-4 py-3">
                 <Users className="h-5 w-5 text-accent" />
                 <div className="flex flex-col items-start">
-                  <span className="text-xs font-medium text-muted-foreground">
+                  <span className="text-xs text-muted-foreground">
                     Guests
                   </span>
                   <select
@@ -102,41 +104,13 @@ export function HeroSection() {
                 </div>
               </div>
 
-              {/* Search Button */}
-              <Button
-                size="lg"
-                className="flex items-center gap-2 rounded-xl bg-primary px-8 py-4 text-primary-foreground hover:bg-primary/90"
-              >
-                <Search className="h-5 w-5" />
-                <span>Find a Table</span>
+              {/* Button */}
+              <Button className="rounded-xl bg-primary px-6 py-3 text-primary-foreground">
+                <Search className="h-5 w-5 mr-2" />
+                Find a Table
               </Button>
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* Quick Cuisine Filters */}
-      <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
-        <p className="mb-4 text-sm font-medium text-muted-foreground">
-          Browse by cuisine
-        </p>
-        <div className="flex flex-wrap gap-2">
-          {[
-            "Italian",
-            "Japanese",
-            "Mexican",
-            "American",
-            "Pizza",
-            "Breakfast",
-            "Burgers",
-          ].map((cuisine) => (
-            <button
-              key={cuisine}
-              className="rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-accent hover:bg-accent/10 hover:text-accent"
-            >
-              {cuisine}
-            </button>
-          ))}
         </div>
       </div>
     </section>
