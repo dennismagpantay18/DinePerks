@@ -6,7 +6,7 @@ import { Search, MapPin, Calendar, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export function HeroSection() {
-  const [location, setLocation] = useState("San Francisco");
+  const [location, setLocation] = useState("Park City");
   const [date, setDate] = useState("Tonight");
   const [guests, setGuests] = useState("2 guests");
 
@@ -16,20 +16,24 @@ export function HeroSection() {
       <div className="relative h-64 w-full overflow-hidden sm:h-72 md:h-80">
         <Image
           src="/images/hero-banner.jpg"
-          alt="Fine dining ambiance"
+          alt="Warm restaurant ambiance"
           fill
           className="object-cover object-center"
           priority
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
-        
+
         {/* Overlay Content */}
         <div className="absolute inset-0 flex flex-col items-center justify-center px-4">
           <h1 className="font-serif text-3xl font-medium leading-tight tracking-tight text-card sm:text-4xl md:text-5xl">
-            <span className="drop-shadow-lg">Reserve your table</span>
+            <span className="drop-shadow-lg">
+              Discover dining perks at
+              <br />
+              great local restaurants
+            </span>
           </h1>
-          <p className="mt-2 max-w-xl text-center text-sm text-card/90 drop-shadow-md sm:text-base">
-            Exclusive dining perks at the finest restaurants
+          <p className="mt-2 max-w-2xl text-center text-sm text-card/90 drop-shadow-md sm:text-base md:text-lg">
+            Exclusive offers at the best spots in town
           </p>
         </div>
       </div>
@@ -37,7 +41,6 @@ export function HeroSection() {
       {/* Search Section - Below Hero */}
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <div className="-mt-10 relative z-10">
-
           {/* Search Box */}
           <div className="rounded-2xl border border-border bg-card p-4 shadow-xl">
             <div className="flex flex-col gap-3 md:flex-row md:items-center md:gap-4">
@@ -114,18 +117,26 @@ export function HeroSection() {
 
       {/* Quick Cuisine Filters */}
       <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:px-8">
-        <p className="mb-4 text-sm font-medium text-muted-foreground">Popular cuisines</p>
+        <p className="mb-4 text-sm font-medium text-muted-foreground">
+          Browse by cuisine
+        </p>
         <div className="flex flex-wrap gap-2">
-          {["Fine Dining", "Italian", "Japanese", "Steakhouse", "Seafood", "French", "Mexican"].map(
-            (cuisine) => (
-              <button
-                key={cuisine}
-                className="rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-accent hover:bg-accent/10 hover:text-accent"
-              >
-                {cuisine}
-              </button>
-            )
-          )}
+          {[
+            "Italian",
+            "Japanese",
+            "Mexican",
+            "American",
+            "Pizza",
+            "Breakfast",
+            "Burgers",
+          ].map((cuisine) => (
+            <button
+              key={cuisine}
+              className="rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-accent hover:bg-accent/10 hover:text-accent"
+            >
+              {cuisine}
+            </button>
+          ))}
         </div>
       </div>
     </section>
