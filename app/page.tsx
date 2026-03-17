@@ -99,21 +99,7 @@ export default function Home() {
       <SiteHeader />
       <main>
         <HeroSection />
-        <RestaurantGrid
-  onSelectRestaurant={handleSelectRestaurant}
-  onSelectTime={(restaurantId, time) => {
-    const restaurant = restaurants.find((r) => r.id === restaurantId)
-    if (!restaurant) return
-
-    setSelectedRestaurant(restaurant)
-    setReservationData({
-      date: new Date().toISOString(),
-      time,
-      guests: 2,
-    })
-    setCurrentScreen("detail")
-  }}
-/>
+        <RestaurantGrid onSelectRestaurant={handleSelectRestaurant} />
         <PerksSection />
       </main>
       <SiteFooter />
