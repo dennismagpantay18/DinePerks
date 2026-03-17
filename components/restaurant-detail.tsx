@@ -260,8 +260,9 @@ export function RestaurantDetail({
 >
   {time}
 </button>
-                </div>
-              </div>
+))}
+</div>
+</div>
 
               {/* Perk reminder */}
               {restaurant.perk && (
