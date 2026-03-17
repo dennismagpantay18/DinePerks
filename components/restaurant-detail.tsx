@@ -249,18 +249,17 @@ export function RestaurantDetail({
                 </label>
                 <div className="mt-2 grid grid-cols-3 gap-2">
                   {restaurant.availableTimes.map((time) => (
-                    <button
-                      key={time}
-                      onClick={() => setSelectedTime(time)}
-                      className={`rounded-xl px-3 py-2.5 text-sm font-medium transition-colors ${
-                        selectedTime === time
-                          ? "bg-primary text-primary-foreground"
-                          "bg-secondary text-secondary-foreground hover:bg-primary hover:text-primary-foreground"
-                      }`}
-                    >
-                      {time}
-                    </button>
-                  ))}
+  <button
+  key={time}
+  onClick={() => setSelectedTime(time)}
+  className={`rounded-xl px-3 py-2.5 text-sm font-medium transition-colors ${
+    selectedTime === time
+      ? "bg-primary text-primary-foreground"
+      : "bg-secondary text-secondary-foreground hover:bg-primary hover:text-primary-foreground"
+  }`}
+>
+  {time}
+</button>
                 </div>
               </div>
 
