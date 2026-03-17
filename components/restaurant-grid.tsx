@@ -8,12 +8,9 @@ import { Badge } from "@/components/ui/badge";
 
 interface RestaurantGridProps {
   onSelectRestaurant?: (id: string) => void;
-  onSelectTime?: (restaurantId: string, time: string) => void;
 }
-
 export function RestaurantGrid({
   onSelectRestaurant,
-  onSelectTime,
 }: RestaurantGridProps) {
   return (
     <section className="bg-background py-16 lg:py-24">
@@ -136,9 +133,9 @@ export function RestaurantGrid({
       key={time}
       onClick={(e) => {
         e.stopPropagation();
-        onSelectTime?.(restaurant.id, time);
+        onSelectRestaurant?.(restaurant.id);
       }}
-      className="flex items-center gap-1 rounded-lg bg-secondary px-3 py-1.5 text-xs font-medium text-secondary-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
+      className="flex items-center gap-1 rounded-lg bg-secondary px-3 py-1.5 text-xs font-medium text-secondary-foreground"
     >
       <Clock className="h-3 w-3" />
       {time}
