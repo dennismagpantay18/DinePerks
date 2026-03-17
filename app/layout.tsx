@@ -51,7 +51,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
-      <body className="font-sans antialiased bg-gradient-to-b from-[#1a1614] to-[#2a2420] text-foreground">
+      <body className="font-sans antialiased bg-gradient-to-b from-background to-secondary/20 text-foreground">
         {children}
         <Analytics />
       </body>
