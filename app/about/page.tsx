@@ -9,6 +9,7 @@ export default function AboutPage() {
       <main className="min-h-screen pt-16 lg:pt-20">
         <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
           <div className="rounded-3xl border border-border bg-card/95 p-6 shadow-sm backdrop-blur sm:p-8 lg:p-10">
+
             <h1 className="font-serif text-4xl font-medium tracking-tight text-foreground lg:text-5xl">
               About DinePerks
             </h1>
@@ -23,6 +24,7 @@ export default function AboutPage() {
             </p>
 
             <section className="mt-10 space-y-10 text-muted-foreground">
+
               <div>
                 <h2 className="font-serif text-2xl font-medium text-foreground">
                   Our Mission
@@ -79,7 +81,9 @@ export default function AboutPage() {
                   clear, straightforward experience without confusion.
                 </p>
               </div>
+
             </section>
+
           </div>
         </div>
       </main>
