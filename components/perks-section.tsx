@@ -5,25 +5,25 @@ const features = [
     icon: Gift,
     title: "Exclusive Credits",
     description:
-      "Enjoy $25-$100 dining credits at participating restaurants, applied automatically to your bill.",
+      "Enjoy dining credits at participating restaurants, applied during eligible reservation times.",
   },
   {
     icon: CreditCard,
     title: "No Hidden Fees",
     description:
-      "Your perks are truly free. No membership fees, no minimum spend requirements.",
+      "See perks clearly before you book. No membership fees and no unexpected charges.",
   },
   {
     icon: Calendar,
-    title: "Priority Reservations",
+    title: "Easy Reservations",
     description:
-      "Get access to exclusive tables and priority booking at the hottest restaurants.",
+      "Book available dining times in seconds and view eligible perks before confirming.",
   },
   {
     icon: Sparkles,
-    title: "VIP Experiences",
+    title: "Discover New Favorites",
     description:
-      "Unlock complimentary tastings, chef's table experiences, and special events.",
+      "Explore standout local restaurants and enjoy great reasons to try something new.",
   },
 ];
 
@@ -36,8 +36,8 @@ export function PerksSection() {
             Dining perks, reimagined
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-            Experience the difference with DinePerks. We partner with the finest
-            restaurants to bring you exclusive benefits.
+            Experience the difference with DinePerks. Discover great restaurants
+            and enjoy exclusive dining perks at select times.
           </p>
         </div>
 
