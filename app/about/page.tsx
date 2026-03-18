@@ -80,6 +80,7 @@ export default function AboutPage() {
                 </p>
               </div>
             </section>
+
           </div>
         </div>
       </main>
