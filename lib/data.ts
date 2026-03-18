@@ -12,7 +12,7 @@ export const restaurants: Restaurant[] = [
     description:
       "A sophisticated Italian dining experience featuring handmade pastas and seasonal ingredients sourced from local farms. Our intimate setting offers the perfect ambiance for special occasions.",
     availableTimes: ["4:00 PM", "4:15 PM", "4:30 PM"],
-    perk: "$10 Dining Credit",
+    perk: "Dining Credit",
     perkAmount: 10,
   },
   {
@@ -40,7 +40,7 @@ export const restaurants: Restaurant[] = [
     description:
       "Classic French cuisine in an elegant Parisian-inspired setting. Our menu showcases traditional techniques with a modern sensibility.",
     availableTimes: ["5:00 PM", "6:30 PM", "7:00 PM", "8:30 PM"],
-    perk: "$10 Dining Credit",
+    perk: "Dining Credit",
     perkAmount: 10,
   },
   {
@@ -54,7 +54,7 @@ export const restaurants: Restaurant[] = [
     description:
       "Modern Japanese dining featuring sushi, robata grill, and seasonal ingredients in the heart of Park City.",
     availableTimes: ["4:00 PM", "4:30 PM", "5:00 PM", "5:30 PM"],
-    perk: "$10 Dining Credit",
+    perk: "Dining Credit",
     perkAmount: 10,
   },
 ];
