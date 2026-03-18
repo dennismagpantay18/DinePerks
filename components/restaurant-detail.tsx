@@ -99,7 +99,7 @@ export function RestaurantDetail({
 
         <button
           onClick={onBack}
-          className="absolute left-4 top-4 flex items-center gap-2 rounded-full bg-card/80 px-4 py-2 text-sm font-medium text-card-foreground backdrop-blur-sm transition-colors hover:bg-card lg:left-8 lg:top-8"
+          className="absolute left-4 top-20 flex items-center gap-2 rounded-full bg-card/80 px-4 py-2 text-sm font-medium text-card-foreground backdrop-blur-sm transition-colors hover:bg-card lg:left-8 lg:top-24"
         >
           <ChevronLeft className="h-4 w-4" />
           Back
