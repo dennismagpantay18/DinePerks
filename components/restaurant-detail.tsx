@@ -14,7 +14,6 @@ import {
   Gift,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import type { Restaurant } from "@/lib/types";
 
 interface RestaurantDetailProps {
@@ -48,9 +47,46 @@ export function RestaurantDetail({
     }
   };
 
+  const getPerkTitle = () => {
+    if (restaurant.perk.includes("%")) {
+      return restaurant.perk;
+    }
+    return `$${restaurant.perkAmount} Dining Credit`;
+  };
+
+  const getPerkReminder = () => {
+    if (restaurant.perk.includes("%")) {
+      return `${restaurant.perk} will be applied`;
+    }
+    return `$${restaurant.perkAmount} credit will be applied`;
+  };
+
+  const getPerkDescription = () => {
+    if (restaurant.perk.includes("%")) {
+      return "Available during selected reservation times.";
+    }
+
+    if (restaurant.id === "1") {
+      return "Valid with a minimum spend of $50.";
+    }
+
+    return "Available during selected reservation times.";
+  };
+
+  const getPerkTerms = () => {
+    if (restaurant.perk.includes("%")) {
+      return "Offer applies during listed time slots. No minimum spend required.";
+    }
+
+    if (restaurant.id === "1") {
+      return "Credit applies to qualifying dine-in purchases during selected times only.";
+    }
+
+    return "Credit applies during selected reservation times.";
+  };
+
   return (
     <div className="min-h-screen bg-background">
-      {/* Hero Image */}
       <div className="relative h-[50vh] w-full lg:h-[60vh]">
         <Image
           src={restaurant.image}
@@ -61,7 +97,6 @@ export function RestaurantDetail({
         />
         <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent" />
 
-        {/* Back button */}
         <button
           onClick={onBack}
           className="absolute left-4 top-4 flex items-center gap-2 rounded-full bg-card/80 px-4 py-2 text-sm font-medium text-card-foreground backdrop-blur-sm transition-colors hover:bg-card lg:left-8 lg:top-8"
@@ -70,7 +105,6 @@ export function RestaurantDetail({
           Back
         </button>
 
-        {/* Restaurant name overlay */}
         <div className="absolute inset-x-0 bottom-0 p-6 lg:p-12">
           <div className="mx-auto max-w-7xl">
             <h1 className="font-serif text-4xl font-medium text-primary-foreground lg:text-6xl">
@@ -85,19 +119,16 @@ export function RestaurantDetail({
               <span>{restaurant.priceLevel}</span>
               <span className="flex items-center gap-1">
                 <MapPin className="h-4 w-4" />
-                {restaurant.neighborhood}
+                {restaurant.location}
               </span>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Content */}
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 lg:py-12">
         <div className="grid gap-8 lg:grid-cols-3">
-          {/* Main content */}
           <div className="lg:col-span-2">
-            {/* Perk Banner */}
             {restaurant.perk && (
               <div className="rounded-2xl bg-perk/10 p-6">
                 <div className="flex items-start gap-4">
@@ -106,33 +137,28 @@ export function RestaurantDetail({
                   </div>
                   <div>
                     <h3 className="font-serif text-xl font-medium text-foreground">
-                      {restaurant.perk.amount} Dining Credit
+                      {getPerkTitle()}
                     </h3>
                     <p className="mt-1 text-muted-foreground">
-                      {restaurant.perk.description}
+                      {getPerkDescription()}
                     </p>
                     <p className="mt-2 text-sm text-muted-foreground">
-                      {restaurant.perk.terms}
+                      {getPerkTerms()}
                     </p>
                   </div>
                 </div>
               </div>
             )}
 
-            {/* About */}
             <div className="mt-8">
               <h2 className="font-serif text-2xl font-medium text-foreground">
                 About
               </h2>
               <p className="mt-4 leading-relaxed text-muted-foreground">
-                {restaurant.name} offers an exceptional dining experience with a
-                focus on seasonal, locally-sourced ingredients. The elegant
-                atmosphere and impeccable service make it perfect for special
-                occasions or intimate dinners.
+                {restaurant.description}
               </p>
             </div>
 
-            {/* Details */}
             <div className="mt-8 grid gap-4 sm:grid-cols-3">
               <div className="rounded-xl bg-secondary p-4">
                 <div className="flex items-center gap-2 text-muted-foreground">
@@ -163,19 +189,18 @@ export function RestaurantDetail({
               </div>
             </div>
 
-            {/* Gallery */}
             <div className="mt-8">
               <h2 className="font-serif text-2xl font-medium text-foreground">
                 Gallery
               </h2>
               <div className="mt-4 grid grid-cols-3 gap-3">
-                {[1, 2, 3, 4].map((i) => (
+                {[1, 2, 3].map((i) => (
                   <div
                     key={i}
                     className="relative aspect-square overflow-hidden rounded-xl"
                   >
                     <Image
-                      src={`/images/restaurant-${i}.jpg`}
+                      src={restaurant.image}
                       alt={`${restaurant.name} gallery ${i}`}
                       fill
                       className="object-cover"
@@ -186,14 +211,12 @@ export function RestaurantDetail({
             </div>
           </div>
 
-          {/* Reservation sidebar */}
           <div className="lg:col-span-1">
             <div className="sticky top-24 rounded-2xl border border-border bg-card p-6 shadow-sm">
               <h3 className="font-serif text-xl font-medium text-card-foreground">
                 Make a Reservation
               </h3>
 
-              {/* Date selector */}
               <div className="mt-6">
                 <label className="text-sm font-medium text-muted-foreground">
                   Select Date
@@ -216,7 +239,6 @@ export function RestaurantDetail({
                 </div>
               </div>
 
-              {/* Party size */}
               <div className="mt-6">
                 <label className="text-sm font-medium text-muted-foreground">
                   Party Size
@@ -242,47 +264,42 @@ export function RestaurantDetail({
                 </div>
               </div>
 
-              {/* Time slots */}
               <div className="mt-6">
                 <label className="text-sm font-medium text-muted-foreground">
                   Available Times
                 </label>
                 <div className="mt-2 grid grid-cols-3 gap-2">
                   {restaurant.availableTimes.map((time) => (
-  <button
-  key={time}
-  onClick={() => setSelectedTime(time)}
-  className={`rounded-xl px-3 py-2.5 text-sm font-medium transition-colors ${
-    selectedTime === time
-      ? "bg-primary text-primary-foreground"
-      : "bg-secondary text-secondary-foreground hover:bg-primary hover:text-primary-foreground"
-  }`}
->
-  {time}
-</button>
-))}
-</div>
-</div>
+                    <button
+                      key={time}
+                      onClick={() => setSelectedTime(time)}
+                      className={`rounded-xl px-3 py-2.5 text-sm font-medium transition-colors ${
+                        selectedTime === time
+                          ? "bg-primary text-primary-foreground"
+                          : "bg-secondary text-secondary-foreground hover:bg-primary hover:text-primary-foreground"
+                      }`}
+                    >
+                      {time}
+                    </button>
+                  ))}
+                </div>
+              </div>
 
-              {/* Perk reminder */}
               {restaurant.perk && (
                 <div className="mt-6 flex items-center gap-2 rounded-xl bg-perk/10 p-3">
                   <Gift className="h-5 w-5 text-perk" />
                   <span className="text-sm font-medium text-perk">
-                    {restaurant.perk.amount} credit will be applied
+                    {getPerkReminder()}
                   </span>
                 </div>
               )}
 
-              {/* Reserve button */}
               <Button
                 className="mt-6 w-full py-6 text-base"
                 disabled={!selectedTime}
                 onClick={handleReserve}
               >
-                {selectedTime
-                  ? `Reserve for ${selectedTime}`
-                  : "Select a time"}
+                {selectedTime ? `Reserve for ${selectedTime}` : "Select a time"}
               </Button>
             </div>
           </div>
