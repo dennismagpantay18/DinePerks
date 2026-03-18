@@ -14,7 +14,6 @@ export const restaurants: Restaurant[] = [
     availableTimes: ["4:00 PM", "4:15 PM", "4:30 PM"],
     perk: "$10 Dining Credit",
     perkAmount: 10,
-    perkDetails: "Minimum spend of $50 required.",
   },
   {
     id: "2",
@@ -29,7 +28,6 @@ export const restaurants: Restaurant[] = [
     availableTimes: ["3:30 PM", "4:00 PM", "4:30 PM"],
     perk: "20% Off",
     perkAmount: 20,
-    perkDetails: "No minimum spend required.",
   },
   {
     id: "3",
@@ -42,7 +40,7 @@ export const restaurants: Restaurant[] = [
     description:
       "Classic French cuisine in an elegant Parisian-inspired setting. Our menu showcases traditional techniques with a modern sensibility.",
     availableTimes: ["5:00 PM", "6:30 PM", "7:00 PM", "8:30 PM"],
-    perk: "Dining Credit",
+    perk: "$10 Dining Credit",
     perkAmount: 10,
   },
   {
@@ -56,7 +54,7 @@ export const restaurants: Restaurant[] = [
     description:
       "Modern Japanese dining featuring sushi, robata grill, and seasonal ingredients in the heart of Park City.",
     availableTimes: ["4:00 PM", "4:30 PM", "5:00 PM", "5:30 PM"],
-    perk: "Dining Credit",
+    perk: "$10 Dining Credit",
     perkAmount: 10,
   },
 ];
