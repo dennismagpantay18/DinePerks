@@ -38,22 +38,6 @@ export function SiteFooter() {
                   Cuisines
                 </Link>
               </li>
-              <li>
-                <Link
-                  href="/neighborhoods"
-                  className="text-sm text-primary-foreground/70 transition-colors hover:text-primary-foreground"
-                >
-                  Neighborhoods
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/collections"
-                  className="text-sm text-primary-foreground/70 transition-colors hover:text-primary-foreground"
-                >
-                  Collections
-                </Link>
-              </li>
             </ul>
           </div>
 
@@ -73,23 +57,7 @@ export function SiteFooter() {
               </li>
               <li>
                 <Link
-                  href="/careers"
-                  className="text-sm text-primary-foreground/70 transition-colors hover:text-primary-foreground"
-                >
-                  Careers
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/press"
-                  className="text-sm text-primary-foreground/70 transition-colors hover:text-primary-foreground"
-                >
-                  Press
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/partners"
+                  href="/restaurants"
                   className="text-sm text-primary-foreground/70 transition-colors hover:text-primary-foreground"
                 >
                   For Restaurants
