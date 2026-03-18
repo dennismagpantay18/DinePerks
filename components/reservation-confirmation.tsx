@@ -43,6 +43,25 @@ export function ReservationConfirmation({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isConfirmed, setIsConfirmed] = useState(false);
 
+  const getPerkTitle = () => {
+    if (restaurant.perk.includes("%")) {
+      return restaurant.perk;
+    }
+    return `$${restaurant.perkAmount} Dining Credit`;
+  };
+
+  const getPerkDescription = () => {
+    if (restaurant.perk.includes("%")) {
+      return `${restaurant.perk} will be applied to eligible dine-in purchases during this reservation time.`;
+    }
+
+    if (restaurant.id === "1") {
+      return `$${restaurant.perkAmount} credit will be applied to eligible dine-in purchases with a minimum spend of $50.`;
+    }
+
+    return `$${restaurant.perkAmount} credit will be applied to eligible dine-in purchases during this reservation time.`;
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -85,6 +104,9 @@ export function ReservationConfirmation({
                 <p className="text-sm text-muted-foreground">
                   {date} at {time} · {guests}{" "}
                   {guests === 1 ? "guest" : "guests"}
+                </p>
+                <p className="mt-1 text-sm font-medium text-perk">
+                  {getPerkTitle()}
                 </p>
               </div>
             </div>
@@ -268,7 +290,7 @@ export function ReservationConfirmation({
                   </h4>
                   <p className="flex items-center gap-1 text-sm text-muted-foreground">
                     <MapPin className="h-3.5 w-3.5" />
-                    {restaurant.neighborhood}
+                    {restaurant.location}
                   </p>
                 </div>
               </div>
@@ -294,14 +316,12 @@ export function ReservationConfirmation({
               {/* Perk */}
               {restaurant.perk && (
                 <div className="mt-6 rounded-xl bg-perk/10 p-4">
-                  <div className="flex items-center gap-3">
-                    <Gift className="h-5 w-5 text-perk" />
+                  <div className="flex items-start gap-3">
+                    <Gift className="mt-0.5 h-5 w-5 text-perk" />
                     <div>
-                      <p className="font-medium text-perk">
-                        {restaurant.perk.amount} Credit
-                      </p>
-                      <p className="text-xs text-muted-foreground">
-                        Will be applied to your bill
+                      <p className="font-medium text-perk">{getPerkTitle()}</p>
+                      <p className="text-xs leading-relaxed text-muted-foreground">
+                        {getPerkDescription()}
                       </p>
                     </div>
                   </div>
