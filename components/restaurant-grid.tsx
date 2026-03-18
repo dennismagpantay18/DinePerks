@@ -9,13 +9,21 @@ import { Badge } from "@/components/ui/badge";
 interface RestaurantGridProps {
   onSelectRestaurant?: (id: string) => void;
 }
+
 export function RestaurantGrid({
   onSelectRestaurant,
 }: RestaurantGridProps) {
+  const getPerkBadgeText = (restaurant: (typeof restaurants)[number]) => {
+    if (restaurant.perk.includes("%")) {
+      return restaurant.perk;
+    }
+
+    return `$${restaurant.perkAmount} Credit`;
+  };
+
   return (
     <section className="bg-background py-16 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
         <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
             <h2 className="font-serif text-3xl font-medium tracking-tight text-foreground lg:text-4xl">
@@ -33,7 +41,6 @@ export function RestaurantGrid({
           </Link>
         </div>
 
-        {/* Filters */}
         <div className="mt-8 flex flex-wrap gap-3">
           {[
             "All",
@@ -56,7 +63,6 @@ export function RestaurantGrid({
           ))}
         </div>
 
-        {/* Grid */}
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {restaurants.map((restaurant) => (
             <article
@@ -64,7 +70,6 @@ export function RestaurantGrid({
               className="group cursor-pointer overflow-hidden rounded-2xl bg-card shadow-sm transition-all hover:shadow-lg"
               onClick={() => onSelectRestaurant?.(restaurant.id)}
             >
-              {/* Image */}
               <div className="relative aspect-[4/3] overflow-hidden">
                 <Image
                   src={restaurant.image}
@@ -72,15 +77,13 @@ export function RestaurantGrid({
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                {/* Perk Badge */}
-                {restaurant.perk && (
-                  <div className="absolute left-3 top-3">
-                    <Badge className="bg-perk text-perk-foreground hover:bg-perk/90">
-                      {restaurant.perk.amount} Credit
-                    </Badge>
-                  </div>
-                )}
-                {/* Bookmark */}
+
+                <div className="absolute left-3 top-3">
+                  <Badge className="bg-perk text-perk-foreground hover:bg-perk/90">
+                    {getPerkBadgeText(restaurant)}
+                  </Badge>
+                </div>
+
                 <button
                   className="absolute right-3 top-3 rounded-full bg-card/80 p-2 opacity-0 backdrop-blur-sm transition-opacity group-hover:opacity-100"
                   aria-label="Save restaurant"
@@ -101,7 +104,6 @@ export function RestaurantGrid({
                 </button>
               </div>
 
-              {/* Content */}
               <div className="p-4">
                 <div className="flex items-start justify-between gap-2">
                   <h3 className="font-serif text-lg font-medium text-card-foreground">
@@ -122,31 +124,30 @@ export function RestaurantGrid({
                   <span>·</span>
                   <span className="flex items-center gap-1">
                     <MapPin className="h-3.5 w-3.5" />
-                    {restaurant.neighborhood}
+                    {restaurant.location}
                   </span>
                 </div>
 
-                {/* Available times */}
-<div className="mt-4 flex flex-wrap gap-2">
-  {restaurant.availableTimes.slice(0, 3).map((time) => (
-    <button
-      key={time}
-      onClick={(e) => {
-        e.stopPropagation();
-        onSelectRestaurant?.(restaurant.id);
-      }}
-      className="flex items-center gap-1 rounded-lg bg-secondary px-3 py-1.5 text-xs font-medium text-secondary-foreground"
-    >
-      <Clock className="h-3 w-3" />
-      {time}
-    </button>
-  ))}
-  {restaurant.availableTimes.length > 3 && (
-    <span className="flex items-center px-2 text-xs text-muted-foreground">
-      +{restaurant.availableTimes.length - 3} more
-    </span>
-  )}
-</div>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {restaurant.availableTimes.slice(0, 3).map((time) => (
+                    <button
+                      key={time}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onSelectRestaurant?.(restaurant.id);
+                      }}
+                      className="flex items-center gap-1 rounded-lg bg-secondary px-3 py-1.5 text-xs font-medium text-secondary-foreground"
+                    >
+                      <Clock className="h-3 w-3" />
+                      {time}
+                    </button>
+                  ))}
+                  {restaurant.availableTimes.length > 3 && (
+                    <span className="flex items-center px-2 text-xs text-muted-foreground">
+                      +{restaurant.availableTimes.length - 3} more
+                    </span>
+                  )}
+                </div>
               </div>
             </article>
           ))}
