@@ -81,7 +81,7 @@ export default function Home() {
     return (
       <>
         <SiteHeader />
-        <main className="pt-16 lg:pt-20">
+        <main>
           <RestaurantDetail
             restaurant={selectedRestaurant}
             onBack={handleBackToHome}
