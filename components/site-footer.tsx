@@ -3,18 +3,12 @@ import Link from "next/link";
 export function SiteFooter() {
   return (
     <footer className="border-t border-border bg-primary text-primary-foreground">
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-          <div className="lg:col-span-1">
-            <Link href="/" className="font-serif text-2xl font-medium">
-              DinePerks
-            </Link>
-            <p className="mt-4 text-sm leading-relaxed text-primary-foreground/70">
-              Discover exceptional dining experiences with exclusive perks and
-              credits at participating restaurants.
-            </p>
-          </div>
+      <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
 
+        {/* CENTERED GRID */}
+        <div className="grid gap-8 text-center md:grid-cols-3">
+
+          {/* Discover */}
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider">
               Discover
@@ -30,7 +24,7 @@ export function SiteFooter() {
               </li>
               <li>
                 <Link
-                  href="/restaurants"
+                  href="/"
                   className="text-sm text-primary-foreground/70 transition-colors hover:text-primary-foreground"
                 >
                   Browse by Area
@@ -39,6 +33,7 @@ export function SiteFooter() {
             </ul>
           </div>
 
+          {/* Company */}
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider">
               Company
@@ -63,6 +58,7 @@ export function SiteFooter() {
             </ul>
           </div>
 
+          {/* Support */}
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider">
               Support
@@ -102,13 +98,16 @@ export function SiteFooter() {
               </li>
             </ul>
           </div>
+
         </div>
 
+        {/* BOTTOM */}
         <div className="mt-12 border-t border-primary-foreground/10 pt-8">
           <p className="text-center text-sm text-primary-foreground/50">
-            &copy; {new Date().getFullYear()} DinePerks. All rights reserved.
+            © {new Date().getFullYear()} DinePerks. All rights reserved.
           </p>
         </div>
+
       </div>
     </footer>
   );
