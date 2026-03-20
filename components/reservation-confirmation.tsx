@@ -45,29 +45,27 @@ export function ReservationConfirmation({
 
   const getPerkTitle = () => {
     if (restaurant.perk.includes("%")) {
-      return restaurant.perk;
+      return `${restaurant.perkAmount}% Off`;
     }
     return `$${restaurant.perkAmount} Dining Credit`;
   };
 
   const getPerkDescription = () => {
     if (restaurant.perk.includes("%")) {
-      return `${restaurant.perk} will be applied to eligible dine-in purchases during this reservation time.`;
+      return `${restaurant.perkAmount}% off applies to food only. Alcohol excluded.`;
     }
 
-    if (restaurant.id === "1") {
-      return `$${restaurant.perkAmount} credit will be applied to eligible dine-in purchases with a minimum spend of $50.`;
-    }
-
-    return `$${restaurant.perkAmount} credit will be applied to eligible dine-in purchases during this reservation time.`;
+    return `$${restaurant.perkAmount} credit applies to food only. Alcohol excluded.`;
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+
     setTimeout(() => {
       setIsSubmitting(false);
       setIsConfirmed(true);
+
       setTimeout(() => {
         onConfirm();
       }, 2000);
@@ -81,12 +79,15 @@ export function ReservationConfirmation({
           <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-perk">
             <Check className="h-10 w-10 text-perk-foreground" />
           </div>
+
           <h1 className="mt-6 font-serif text-3xl font-medium text-foreground">
             Reservation Confirmed!
           </h1>
+
           <p className="mt-2 text-muted-foreground">
             A confirmation email has been sent to {formData.email}
           </p>
+
           <div className="mt-8 rounded-2xl bg-card p-6 text-left shadow-sm">
             <div className="flex items-center gap-4">
               <div className="relative h-16 w-16 overflow-hidden rounded-xl">
@@ -97,6 +98,7 @@ export function ReservationConfirmation({
                   className="object-cover"
                 />
               </div>
+
               <div>
                 <h3 className="font-serif text-lg font-medium text-card-foreground">
                   {restaurant.name}
@@ -128,6 +130,7 @@ export function ReservationConfirmation({
             <ChevronLeft className="h-5 w-5" />
             <span className="hidden sm:inline">Back</span>
           </button>
+
           <h1 className="font-serif text-xl font-medium text-foreground">
             Complete Reservation
           </h1>
@@ -167,6 +170,7 @@ export function ReservationConfirmation({
                     placeholder="John"
                   />
                 </div>
+
                 <div>
                   <label
                     htmlFor="lastName"
@@ -284,6 +288,7 @@ export function ReservationConfirmation({
                     className="object-cover"
                   />
                 </div>
+
                 <div>
                   <h4 className="font-medium text-card-foreground">
                     {restaurant.name}
@@ -301,10 +306,12 @@ export function ReservationConfirmation({
                   <Calendar className="h-4 w-4 text-muted-foreground" />
                   <span className="text-card-foreground">{date}</span>
                 </div>
+
                 <div className="flex items-center gap-3 text-sm">
                   <Clock className="h-4 w-4 text-muted-foreground" />
                   <span className="text-card-foreground">{time}</span>
                 </div>
+
                 <div className="flex items-center gap-3 text-sm">
                   <Users className="h-4 w-4 text-muted-foreground" />
                   <span className="text-card-foreground">
