@@ -5,18 +5,16 @@ export function SiteFooter() {
     <footer className="border-t border-border bg-primary text-primary-foreground">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-          {/* Brand */}
           <div className="lg:col-span-1">
             <Link href="/" className="font-serif text-2xl font-medium">
               DinePerks
             </Link>
             <p className="mt-4 text-sm leading-relaxed text-primary-foreground/70">
               Discover exceptional dining experiences with exclusive perks and
-              credits at the finest restaurants.
+              credits at participating restaurants.
             </p>
           </div>
 
-          {/* Discover */}
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider">
               Discover
@@ -32,16 +30,15 @@ export function SiteFooter() {
               </li>
               <li>
                 <Link
-                  href="/cuisines"
+                  href="/restaurants"
                   className="text-sm text-primary-foreground/70 transition-colors hover:text-primary-foreground"
                 >
-                  Cuisines
+                  Browse by Area
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Company */}
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider">
               Company
@@ -66,7 +63,6 @@ export function SiteFooter() {
             </ul>
           </div>
 
-          {/* Support */}
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider">
               Support
