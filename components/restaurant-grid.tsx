@@ -61,11 +61,11 @@ export function RestaurantGrid({
               <button
                 key={filter}
                 onClick={() => onSelectArea(filter)}
-                className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
-                  isActive
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
-                }`}
+               className={`rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 ${
+  isActive
+    ? "bg-primary text-primary-foreground shadow"
+    : "bg-secondary text-secondary-foreground hover:bg-primary hover:text-primary-foreground hover:shadow hover:-translate-y-0.5"
+}`}
               >
                 {filter}
               </button>
