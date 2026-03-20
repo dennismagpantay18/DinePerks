@@ -31,13 +31,11 @@ export function HeroSection() {
         {/* TEXT */}
         <div className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center">
           <h1 className="font-serif text-3xl font-medium leading-tight tracking-tight text-white sm:text-4xl md:text-5xl">
-            Discover dining perks at
-            <br />
-            great local restaurants
+            Refined Dining, On Your Terms
           </h1>
 
-          <p className="mt-2 max-w-2xl text-white/80 sm:text-base md:text-lg">
-            Exclusive offers at the best spots in town
+          <p className="mt-3 max-w-2xl text-white/80 sm:text-base md:text-lg">
+            Discover exceptional restaurants with thoughtfully timed perks.
           </p>
         </div>
       </div>
@@ -47,7 +45,6 @@ export function HeroSection() {
         <div className="-mt-10 relative z-10">
           <div className="rounded-2xl border border-border bg-card p-4 shadow-xl">
             <div className="flex flex-col gap-3 md:flex-row md:items-center md:gap-4">
-
               {/* Location */}
               <div className="flex flex-1 items-center gap-3 rounded-xl bg-muted/50 px-4 py-3">
                 <MapPin className="h-5 w-5 text-accent" />
@@ -106,7 +103,7 @@ export function HeroSection() {
 
               {/* Button */}
               <Button className="rounded-xl bg-primary px-6 py-3 text-primary-foreground">
-                <Search className="h-5 w-5 mr-2" />
+                <Search className="mr-2 h-5 w-5" />
                 Find a Table
               </Button>
             </div>
