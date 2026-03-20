@@ -77,33 +77,17 @@ export function RestaurantDetail({
 
   const getPerkReminder = () => {
     if (restaurant.perk.includes("%")) {
-      return `${restaurant.perkAmount}% off will be applied`;
+      return `${restaurant.perkAmount}% off applies to food only. Alcohol excluded.`;
     }
-    return `$${restaurant.perkAmount} credit will be applied`;
+    return `$${restaurant.perkAmount} credit applies to food only. Alcohol excluded.`;
   };
 
   const getPerkDescription = () => {
-    if (restaurant.perk.includes("%")) {
-      return "Available during selected reservation times.";
-    }
-
-    if (restaurant.id === "1") {
-      return "Valid with a minimum spend of $50.";
-    }
-
     return "Available during selected reservation times.";
   };
 
   const getPerkTerms = () => {
-    if (restaurant.perk.includes("%")) {
-      return "Offer applies during listed time slots. No minimum spend required.";
-    }
-
-    if (restaurant.id === "1") {
-      return "Credit applies to qualifying dine-in purchases during selected times only.";
-    }
-
-    return "Credit applies during selected reservation times.";
+    return "Applicable to food only. Alcohol excluded.";
   };
 
   return (
