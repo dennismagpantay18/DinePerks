@@ -31,11 +31,13 @@ export function HeroSection() {
         {/* TEXT */}
         <div className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center">
           <h1 className="font-serif text-3xl font-medium leading-tight tracking-tight text-white sm:text-4xl md:text-5xl">
-            Refined Dining, On Your Terms
+            Discover dining perks at
+            <br />
+            great local restaurants
           </h1>
 
-          <p className="mt-3 max-w-2xl text-white/80 sm:text-base md:text-lg">
-            Discover exceptional restaurants with thoughtfully timed perks.
+          <p className="mt-2 max-w-2xl text-white/80 sm:text-base md:text-lg">
+            Exclusive offers at the best spots in town
           </p>
         </div>
       </div>
@@ -65,9 +67,7 @@ export function HeroSection() {
               <div className="flex flex-1 items-center gap-3 rounded-xl bg-muted/50 px-4 py-3">
                 <Calendar className="h-5 w-5 text-accent" />
                 <div className="flex flex-col items-start">
-                  <span className="text-xs text-muted-foreground">
-                    Date
-                  </span>
+                  <span className="text-xs text-muted-foreground">Date</span>
                   <select
                     value={date}
                     onChange={(e) => setDate(e.target.value)}
@@ -84,9 +84,7 @@ export function HeroSection() {
               <div className="flex flex-1 items-center gap-3 rounded-xl bg-muted/50 px-4 py-3">
                 <Users className="h-5 w-5 text-accent" />
                 <div className="flex flex-col items-start">
-                  <span className="text-xs text-muted-foreground">
-                    Guests
-                  </span>
+                  <span className="text-xs text-muted-foreground">Guests</span>
                   <select
                     value={guests}
                     onChange={(e) => setGuests(e.target.value)}
