@@ -3,22 +3,34 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Star, MapPin, Clock } from "lucide-react";
-import { restaurants } from "@/lib/data";
+import type { Restaurant } from "@/lib/types";
 import { Badge } from "@/components/ui/badge";
 
 interface RestaurantGridProps {
+  restaurants: Restaurant[];
+  filterChips: string[];
+  selectedArea: string;
+  onSelectArea: (area: string) => void;
   onSelectRestaurant?: (id: string) => void;
 }
 
 export function RestaurantGrid({
+  restaurants,
+  filterChips,
+  selectedArea,
+  onSelectArea,
   onSelectRestaurant,
 }: RestaurantGridProps) {
-  const getPerkBadgeText = (restaurant: (typeof restaurants)[number]) => {
-    if (restaurant.perk.includes("%")) {
-      return restaurant.perk;
+  const getPerkBadgeText = (restaurant: Restaurant) => {
+    if (restaurant.perk === "Dining Credit") {
+      return `$${restaurant.perkAmount} Credit`;
     }
 
-    return `$${restaurant.perkAmount} Credit`;
+    return `${restaurant.perkAmount}% Off`;
+  };
+
+  const getPriceLevelText = (priceLevel: number) => {
+    return "$".repeat(priceLevel);
   };
 
   return (
@@ -30,7 +42,7 @@ export function RestaurantGrid({
               Featured Restaurants
             </h2>
             <p className="mt-2 text-muted-foreground">
-              Handpicked venues with exclusive dining perks
+              Explore curated dining offers by area
             </p>
           </div>
           <Link
@@ -42,25 +54,30 @@ export function RestaurantGrid({
         </div>
 
         <div className="mt-8 flex flex-wrap gap-3">
-          {[
-            "All",
-            "Available Tonight",
-            "With Perks",
-            "Fine Dining",
-            "Casual",
-            "Date Night",
-          ].map((filter, index) => (
-            <button
-              key={filter}
-              className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
-                index === 0
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
-              }`}
-            >
-              {filter}
-            </button>
-          ))}
+          {filterChips.map((filter) => {
+            const isActive = selectedArea === filter;
+
+            return (
+              <button
+                key={filter}
+                onClick={() => onSelectArea(filter)}
+                className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                  isActive
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                }`}
+              >
+                {filter}
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="mt-6">
+          <p className="text-sm text-muted-foreground">
+            Showing <span className="font-medium text-foreground">{selectedArea}</span>{" "}
+            • {restaurants.length} restaurant{restaurants.length === 1 ? "" : "s"}
+          </p>
         </div>
 
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
@@ -87,6 +104,7 @@ export function RestaurantGrid({
                 <button
                   className="absolute right-3 top-3 rounded-full bg-card/80 p-2 opacity-0 backdrop-blur-sm transition-opacity group-hover:opacity-100"
                   aria-label="Save restaurant"
+                  onClick={(e) => e.stopPropagation()}
                 >
                   <svg
                     className="h-5 w-5 text-foreground"
@@ -120,7 +138,7 @@ export function RestaurantGrid({
                 <div className="mt-2 flex items-center gap-2 text-sm text-muted-foreground">
                   <span>{restaurant.cuisine}</span>
                   <span>·</span>
-                  <span>{restaurant.priceLevel}</span>
+                  <span>{getPriceLevelText(restaurant.priceLevel)}</span>
                   <span>·</span>
                   <span className="flex items-center gap-1">
                     <MapPin className="h-3.5 w-3.5" />
@@ -152,6 +170,17 @@ export function RestaurantGrid({
             </article>
           ))}
         </div>
+
+        {restaurants.length === 0 && (
+          <div className="mt-10 rounded-2xl border border-dashed border-border bg-card p-8 text-center">
+            <h3 className="text-lg font-medium text-card-foreground">
+              No restaurants available in {selectedArea}
+            </h3>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Try selecting another city.
+            </p>
+          </div>
+        )}
       </div>
     </section>
   );
