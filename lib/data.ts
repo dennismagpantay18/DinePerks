@@ -237,13 +237,8 @@ export const restaurants: Restaurant[] = [
 ];
 
 export const filterChips = [
-  "Tonight",
-  "2 Guests",
-  "Nearby",
   "Park City",
   "Heber City",
   "Kamas",
   "Salt Lake City",
-  "Dining Credit",
-  "% Off",
 ];
