@@ -22,14 +22,35 @@ interface RestaurantDetailProps {
   onReserve: (date: string, time: string, guests: number) => void;
 }
 
+const today = new Date();
+const nextDay = new Date();
+nextDay.setDate(today.getDate() + 1);
+
+const formatDisplayDate = (date: Date) => {
+  return {
+    day: date.toLocaleDateString("en-US", { weekday: "short" }),
+    date: date.toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+    }),
+    fullDate: date.toLocaleDateString("en-US", {
+      weekday: "short",
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    }),
+  };
+};
+
 const dates = [
-  { day: "Today", date: "Mar 15" },
-  { day: "Sun", date: "Mar 16" },
-  { day: "Mon", date: "Mar 17" },
-  { day: "Tue", date: "Mar 18" },
-  { day: "Wed", date: "Mar 19" },
-  { day: "Thu", date: "Mar 20" },
-  { day: "Fri", date: "Mar 21" },
+  {
+    label: "Today",
+    ...formatDisplayDate(today),
+  },
+  {
+    label: null,
+    ...formatDisplayDate(nextDay),
+  },
 ];
 
 export function RestaurantDetail({
@@ -43,20 +64,20 @@ export function RestaurantDetail({
 
   const handleReserve = () => {
     if (selectedTime) {
-      onReserve(dates[selectedDate].date, selectedTime, guests);
+      onReserve(dates[selectedDate].fullDate, selectedTime, guests);
     }
   };
 
   const getPerkTitle = () => {
     if (restaurant.perk.includes("%")) {
-      return restaurant.perk;
+      return `${restaurant.perkAmount}% Off`;
     }
     return `$${restaurant.perkAmount} Dining Credit`;
   };
 
   const getPerkReminder = () => {
     if (restaurant.perk.includes("%")) {
-      return `${restaurant.perk} will be applied`;
+      return `${restaurant.perkAmount}% off will be applied`;
     }
     return `$${restaurant.perkAmount} credit will be applied`;
   };
@@ -116,7 +137,7 @@ export function RestaurantDetail({
                 <span className="font-medium">{restaurant.rating}</span>
               </div>
               <span>{restaurant.cuisine}</span>
-              <span>{restaurant.priceLevel}</span>
+              <span>{"$".repeat(restaurant.priceLevel)}</span>
               <span className="flex items-center gap-1">
                 <MapPin className="h-4 w-4" />
                 {restaurant.location}
@@ -221,18 +242,20 @@ export function RestaurantDetail({
                 <label className="text-sm font-medium text-muted-foreground">
                   Select Date
                 </label>
-                <div className="mt-2 flex gap-2 overflow-x-auto pb-2">
+                <div className="mt-2 flex gap-3">
                   {dates.map((d, index) => (
                     <button
-                      key={index}
+                      key={d.fullDate}
                       onClick={() => setSelectedDate(index)}
-                      className={`flex min-w-[60px] flex-col items-center rounded-xl px-3 py-2 text-center transition-colors ${
+                      className={`flex min-w-[84px] flex-col items-center rounded-xl px-4 py-3 text-center transition-all ${
                         selectedDate === index
                           ? "bg-primary text-primary-foreground"
                           : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
                       }`}
                     >
-                      <span className="text-xs">{d.day}</span>
+                      <span className="text-xs">
+                        {d.label ? d.label : d.day}
+                      </span>
                       <span className="text-sm font-medium">{d.date}</span>
                     </button>
                   ))}
