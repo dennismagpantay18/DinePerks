@@ -8,7 +8,7 @@ import { RestaurantGrid } from "@/components/restaurant-grid";
 import { PerksSection } from "@/components/perks-section";
 import { RestaurantDetail } from "@/components/restaurant-detail";
 import { ReservationConfirmation } from "@/components/reservation-confirmation";
-import { restaurants } from "@/lib/data";
+import { restaurants, filterChips } from "@/lib/data";
 import type { Restaurant } from "@/lib/types";
 
 type Screen = "home" | "detail" | "confirmation";
@@ -25,6 +25,11 @@ export default function Home() {
     useState<Restaurant | null>(null);
   const [reservationData, setReservationData] =
     useState<ReservationData | null>(null);
+  const [selectedArea, setSelectedArea] = useState("Park City");
+
+  const filteredRestaurants = restaurants.filter(
+    (restaurant) => restaurant.location === selectedArea
+  );
 
   const handleSelectRestaurant = (id: string) => {
     const restaurant = restaurants.find((r) => r.id === id);
@@ -58,7 +63,6 @@ export default function Home() {
     handleBackToHome();
   };
 
-  // Confirmation Screen
   if (
     currentScreen === "confirmation" &&
     selectedRestaurant &&
@@ -76,7 +80,6 @@ export default function Home() {
     );
   }
 
-  // Detail Screen
   if (currentScreen === "detail" && selectedRestaurant) {
     return (
       <>
@@ -93,13 +96,18 @@ export default function Home() {
     );
   }
 
-  // Home Screen
   return (
     <>
       <SiteHeader />
       <main>
         <HeroSection />
-        <RestaurantGrid onSelectRestaurant={handleSelectRestaurant} />
+        <RestaurantGrid
+          restaurants={filteredRestaurants}
+          filterChips={filterChips}
+          selectedArea={selectedArea}
+          onSelectArea={setSelectedArea}
+          onSelectRestaurant={handleSelectRestaurant}
+        />
         <PerksSection />
       </main>
       <SiteFooter />
