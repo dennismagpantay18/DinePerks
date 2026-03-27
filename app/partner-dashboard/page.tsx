@@ -98,8 +98,13 @@ export default function PartnerDashboardPage() {
           <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
             <div className="flex flex-col gap-5">
               <div className="flex items-center gap-4">
-                <div className="h-16 w-16 rounded-2xl bg-[url('/elegant-restaurant-interior.png')] bg-cover bg-center" />
-
+                <div className="h-16 w-16 overflow-hidden rounded-2xl bg-white/5">
+  <img
+    src="/images/restaurant-1.png"
+    alt="Demo Bistro"
+    className="h-full w-full object-cover"
+  />
+</div>
                 <div>
                   <h2 className="text-2xl font-semibold">Demo Bistro</h2>
                   <p className="text-sm text-white/60">Park City</p>
