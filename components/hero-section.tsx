@@ -1,14 +1,16 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
-import { Search } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { MapPin } from "lucide-react";
 
 export function HeroSection() {
+  const [location, setLocation] = useState("Park City");
+
   return (
     <section className="w-full bg-background">
       {/* HERO */}
-      <div className="relative h-64 w-full overflow-hidden sm:h-72 md:h-80">
+      <div className="relative h-72 w-full overflow-hidden sm:h-80 md:h-[26rem]">
         <Image
           src="/images/hero-banner.jpg"
           alt="Warm restaurant ambiance"
@@ -24,28 +26,37 @@ export function HeroSection() {
         <div className="absolute inset-0 bg-[#3b2a1f]/40" />
 
         {/* TEXT */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center">
+        <div className="absolute inset-0 flex flex-col items-center justify-center px-4 pt-10 text-center">
           <h1 className="font-serif text-3xl font-medium leading-tight tracking-tight text-white sm:text-4xl md:text-5xl">
             Save on dining during
             <br />
             off-peak hours
           </h1>
 
-          <p className="mt-2 max-w-2xl text-white/80 sm:text-base md:text-lg">
+          <p className="mt-3 max-w-2xl text-white/80 sm:text-base md:text-lg">
             Book today or tomorrow and unlock exclusive offers at top local
             restaurants.
           </p>
+        </div>
+      </div>
 
-          <div className="mt-6">
-            <Button className="rounded-xl bg-primary px-6 py-3 text-primary-foreground">
-              <Search className="mr-2 h-5 w-5" />
-              Explore Deals
-            </Button>
+      {/* LOCATION ONLY */}
+      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+        <div className="-mt-10 relative z-10">
+          <div className="max-w-sm rounded-2xl border border-border bg-card p-4 shadow-xl">
+            <div className="flex items-center gap-3 rounded-xl bg-muted/50 px-4 py-3">
+              <MapPin className="h-5 w-5 text-accent" />
+              <div className="flex w-full flex-col items-start">
+                <span className="text-xs text-muted-foreground">Location</span>
+                <input
+                  type="text"
+                  value={location}
+                  onChange={(e) => setLocation(e.target.value)}
+                  className="w-full bg-transparent text-sm font-medium text-foreground outline-none"
+                />
+              </div>
+            </div>
           </div>
-
-          <p className="mt-3 text-sm text-white/60">
-            Same-day &amp; next-day bookings only
-          </p>
         </div>
       </div>
     </section>
