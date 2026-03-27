@@ -96,10 +96,21 @@ export default function PartnerDashboardPage() {
 
         <section className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-2xl backdrop-blur">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
-            <div>
-              <p className="text-sm text-white/60">Today’s Offer</p>
-              <h2 className="mt-3 text-3xl font-semibold">{offerText}</h2>
-              <p className="mt-3 text-xl text-white/80">{availableWindow}</p>
+            <div className="flex flex-col gap-5">
+              <div className="flex items-center gap-4">
+                <div className="h-16 w-16 rounded-2xl bg-[url('/elegant-restaurant-interior.png')] bg-cover bg-center" />
+
+                <div>
+                  <h2 className="text-2xl font-semibold">Demo Bistro</h2>
+                  <p className="text-sm text-white/60">Park City</p>
+                </div>
+              </div>
+
+              <div>
+                <p className="text-sm text-white/60">Today’s Offer</p>
+                <h2 className="mt-3 text-3xl font-semibold">{offerText}</h2>
+                <p className="mt-3 text-xl text-white/80">{availableWindow}</p>
+              </div>
             </div>
 
             <div className="inline-flex rounded-full border border-white/10 bg-black/30 p-1">
