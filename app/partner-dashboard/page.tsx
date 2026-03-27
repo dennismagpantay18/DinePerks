@@ -97,12 +97,9 @@ export default function PartnerDashboardPage() {
         <section className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-2xl backdrop-blur">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
             <div className="flex flex-col gap-5">
-              <div className="flex items-center gap-4">
-               <div className="h-16 w-16 rounded-2xl bg-[url('/elegant-restaurant-interior.png')] bg-cover bg-center" />
-                <div>
-                  <h2 className="text-2xl font-semibold">Demo Bistro</h2>
-                  <p className="text-sm text-white/60">Park City</p>
-                </div>
+              <div>
+                <h2 className="text-2xl font-semibold">Demo Bistro</h2>
+                <p className="text-sm text-white/60">Park City</p>
               </div>
 
               <div>
@@ -168,36 +165,35 @@ export default function PartnerDashboardPage() {
           <h2 className="mb-4 text-3xl font-semibold">Listing Preview</h2>
 
           <div className="overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-2xl backdrop-blur">
-            <div className="grid gap-0 lg:grid-cols-[360px_1fr]">
-              <div className="relative min-h-[300px] bg-[url('/elegant-restaurant-interior.png')] bg-cover bg-center">
-                <div className="absolute left-4 top-4 rounded-full bg-emerald-500 px-4 py-2 text-xl font-semibold text-black">
-                  {offerType === "credit" ? `$${offerValue} Credit` : `${offerValue}% Off`}
+            <div className="flex flex-col gap-5 p-6 md:flex-row">
+              <div className="relative h-40 w-full overflow-hidden rounded-2xl md:w-56 md:flex-shrink-0">
+                <img
+                  src="/images/restaurant-1.jpg"
+                  alt="Demo Bistro"
+                  className="h-full w-full object-cover"
+                />
+                <div className="absolute left-3 top-3 rounded-full bg-emerald-500 px-3 py-1 text-sm font-semibold text-black">
+                  {offerType === "credit"
+                    ? `$${offerValue} Credit`
+                    : `${offerValue}% Off`}
                 </div>
               </div>
 
-              <div className="p-8">
-                <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-                  <div>
-                    <div className="mb-4 h-48 w-full overflow-hidden rounded-2xl">
-  <img
-    src="/images/restaurant-1.jpg"
-    alt="Demo Bistro"
-    className="h-full w-full object-cover"
-  />
-</div>
-
-<h3 className="text-3xl font-semibold">Demo Bistro</h3>
-                    <p className="mt-2 text-xl text-white/65">★ 4.8 &nbsp; Park City</p>
-                  </div>
+              <div className="flex-1">
+                <div>
+                  <h3 className="text-3xl font-semibold">Demo Bistro</h3>
+                  <p className="mt-2 text-xl text-white/65">
+                    ★ 4.8 &nbsp; Park City
+                  </p>
                 </div>
 
                 {!isPaused ? (
                   <>
-                    <p className="mt-8 text-xl font-medium text-white/80">
+                    <p className="mt-6 text-xl font-medium text-white/80">
                       Available Time Slots
                     </p>
 
-                    <div className="mt-5 flex flex-wrap gap-3">
+                    <div className="mt-4 flex flex-wrap gap-3">
                       {timeSlots.map((slot) => (
                         <div
                           key={slot.id}
@@ -212,7 +208,7 @@ export default function PartnerDashboardPage() {
                     </div>
                   </>
                 ) : (
-                  <div className="mt-10 rounded-2xl border border-white/10 bg-black/30 p-6">
+                  <div className="mt-8 rounded-2xl border border-white/10 bg-black/30 p-6">
                     <p className="text-2xl font-medium text-white/85">
                       Offer paused. Time slots removed.
                     </p>
