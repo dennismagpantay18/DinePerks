@@ -98,13 +98,7 @@ export default function PartnerDashboardPage() {
           <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
             <div className="flex flex-col gap-5">
               <div className="flex items-center gap-4">
-                <div className="h-16 w-16 overflow-hidden rounded-2xl bg-white/5">
-  <img
-    src="/images/restaurant-1.png"
-    alt="Demo Bistro"
-    className="h-full w-full object-cover"
-  />
-</div>
+               <div className="h-16 w-16 rounded-2xl bg-[url('/elegant-restaurant-interior.png')] bg-cover bg-center" />
                 <div>
                   <h2 className="text-2xl font-semibold">Demo Bistro</h2>
                   <p className="text-sm text-white/60">Park City</p>
@@ -184,7 +178,15 @@ export default function PartnerDashboardPage() {
               <div className="p-8">
                 <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
                   <div>
-                    <h3 className="text-4xl font-semibold">Demo Bistro</h3>
+                    <div className="mb-4 h-48 w-full overflow-hidden rounded-2xl">
+  <img
+    src="/images/restaurant-1.jpg"
+    alt="Demo Bistro"
+    className="h-full w-full object-cover"
+  />
+</div>
+
+<h3 className="text-3xl font-semibold">Demo Bistro</h3>
                     <p className="mt-2 text-xl text-white/65">★ 4.8 &nbsp; Park City</p>
                   </div>
                 </div>
