@@ -1,12 +1,8 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
-import { MapPin } from "lucide-react";
 
 export function HeroSection() {
-  const [location, setLocation] = useState("Park City");
-
   return (
     <section className="w-full bg-background">
       {/* HERO */}
@@ -37,26 +33,6 @@ export function HeroSection() {
             Book today or tomorrow and unlock exclusive offers at top local
             restaurants.
           </p>
-        </div>
-      </div>
-
-      {/* LOCATION ONLY */}
-      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-        <div className="-mt-10 relative z-10">
-          <div className="max-w-sm rounded-2xl border border-border bg-card p-4 shadow-xl">
-            <div className="flex items-center gap-3 rounded-xl bg-muted/50 px-4 py-3">
-              <MapPin className="h-5 w-5 text-accent" />
-              <div className="flex w-full flex-col items-start">
-                <span className="text-xs text-muted-foreground">Location</span>
-                <input
-                  type="text"
-                  value={location}
-                  onChange={(e) => setLocation(e.target.value)}
-                  className="w-full bg-transparent text-sm font-medium text-foreground outline-none"
-                />
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
